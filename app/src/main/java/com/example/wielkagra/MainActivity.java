@@ -21,11 +21,31 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
+
+
+
+
     int punkty=0;
     int mss=0;
 
     boolean gra;
     int poprzednio,przycisk;
+    protected void onStart() {
+        super.onStart();
+        punkty=0;
+        mss=0;
+    }
+
+    protected void onStop() {
+        super.onStop();
+        punkty=0;
+        mss=0;
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        punkty=0;
+        mss=0;
+    }
 
     int[] images = new int[] {
             R.drawable.wzor_jeden,
@@ -99,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk1 = (ImageButton)findViewById(przycisk);
                                     przycisk1.setImageResource(R.drawable.okejka_tak);
                                     przycisk1.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -167,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk2 = (ImageButton)findViewById(przycisk);
                                     przycisk2.setImageResource(R.drawable.okejka_tak);
                                     przycisk2.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -234,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk3 = (ImageButton)findViewById(przycisk);
                                     przycisk3.setImageResource(R.drawable.okejka_tak);
                                     przycisk3.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -304,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk4 = (ImageButton)findViewById(przycisk);
                                     przycisk4.setImageResource(R.drawable.okejka_tak);
                                     przycisk4.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -369,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk5 = (ImageButton)findViewById(przycisk);
                                     przycisk5.setImageResource(R.drawable.okejka_tak);
                                     przycisk5.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -428,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk6 = (ImageButton)findViewById(przycisk);
                                     przycisk6.setImageResource(R.drawable.okejka_tak);
                                     przycisk6.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -489,9 +509,9 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk7 = (ImageButton)findViewById(przycisk);
                                     przycisk7.setImageResource(R.drawable.okejka_tak);
                                     przycisk7.setVisibility(View.INVISIBLE);
-                                    punkty++;
 
-                                    if(punkty==4)
+
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -528,7 +548,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               
+
                 przycisk8.setImageResource(lista.get(7));
                 final Handler handler = new Handler();
 
@@ -557,7 +577,7 @@ public class MainActivity extends AppCompatActivity {
                                     ImageButton przycisk8 = (ImageButton)findViewById(przycisk);
                                     przycisk8.setImageResource(R.drawable.okejka_tak);
                                     przycisk8.setVisibility(View.INVISIBLE);
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -624,7 +644,7 @@ public class MainActivity extends AppCompatActivity {
                                     przycisk9.setImageResource(R.drawable.okejka_tak);
                                     przycisk9.setVisibility(View.INVISIBLE);
 
-                                    if(punkty==4)
+                                    if(punkty==3)
                                     {
                                         gra=false;
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
@@ -656,6 +676,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
 
 }
 
