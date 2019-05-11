@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.DrawableRes;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Random rand= new Random();
+        final MediaPlayer mp = MediaPlayer.create(getApplicationContext(),R.raw.fanfary_jeden);
+        final MediaPlayer mp2 = MediaPlayer.create(getApplicationContext(),R.raw.mario_coin);
 
         while (lista.size()<9)
         {
@@ -125,12 +128,14 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
                                         punkty++;
+                                        mp2.start();
                                     }
 
                                 }
@@ -193,11 +198,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
 
@@ -260,11 +267,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
 
@@ -330,12 +339,14 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
                                         punkty++;
+                                        mp2.start();
                                     }
 
                                 }
@@ -395,11 +406,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         mss=0;
                                         punkty=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
 
@@ -454,11 +467,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
                                 }
@@ -517,11 +532,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
                                 }
@@ -583,11 +600,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
                                 }
@@ -650,11 +669,13 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
                                         punkty=0;
                                         mss=0;
+                                        mp.start();
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else
                                     {
+                                        mp2.start();
                                         punkty++;
                                     }
 
