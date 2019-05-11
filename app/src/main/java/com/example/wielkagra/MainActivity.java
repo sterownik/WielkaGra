@@ -1,5 +1,6 @@
 package com.example.wielkagra;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -20,13 +21,13 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
-
+    int punkty=0;
     int d=0;
     int mss=0;
-    int punkty=0;
+
     boolean gra;
     int poprzednio,przycisk;
-    boolean p1,p2,p3,p4,p5,p6,p7,p8,p9;
+
     int[] images = new int[] {
             R.drawable.wzor_jeden,
             R.drawable.krecik_kopia,
@@ -44,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gra=true;
-        if(punkty==4)
-        {
-            gra=false;
-            Toast.makeText(getApplicationContext(),Integer.toString(punkty),Toast.LENGTH_LONG).show();
-        }
+        
+
 
 
 
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 if(gra) {
                     mss++;
                 }
-                handler2.postDelayed(this,100);
+                handler2.postDelayed(this,1000);
             }
         });
 
@@ -88,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                p1=true;
                // Toast.makeText(getApplicationContext(),images[2],Toast.LENGTH_LONG).show();
 
 
@@ -98,32 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 przycisk1.setImageResource(lista.get(0));
 
 
-                if((lista.get(0)==images[2]&&poprzednio==images[3])||(lista.get(0)==images[3]&&poprzednio==images[2])||
-                (lista.get(0)==images[6]&&poprzednio==images[5])||(lista.get(0)==images[5]&&poprzednio==images[6])||
-                        (lista.get(0)==images[0]&&poprzednio==images[1])||(lista.get(0)==images[1]&&poprzednio==images[0])||
-                (lista.get(0)==images[7]&&poprzednio==images[8])||(lista.get(0)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-                   
-
-
-
-                            Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                            przycisk1.setImageResource(R.drawable.okejka_tak);
-                            przycisk1.setVisibility(View.INVISIBLE);
-                            ImageButton przycisk1 = (ImageButton)findViewById(przycisk);
-                            przycisk1.setImageResource(R.drawable.okejka_tak);
-                            przycisk1.setVisibility(View.INVISIBLE);
-                            punkty++;
-
-
-
-                }
-                else{
-                    poprzednio=lista.get(0);
-                    przycisk=R.id.but1;
-                }
 
 
 
@@ -145,7 +117,41 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds1==2)
                             {
                                 run=false;
-                                przycisk1.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(0)==images[2]&&poprzednio==images[3])||(lista.get(0)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(0)==images[6]&&poprzednio==images[5])||(lista.get(0)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(0)==images[0]&&poprzednio==images[1])||(lista.get(0)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(0)==images[7]&&poprzednio==images[8])||(lista.get(0)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+                                    przycisk1.setImageResource(R.drawable.okejka_tak);
+                                    przycisk1.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk1 = (ImageButton)findViewById(przycisk);
+                                    przycisk1.setImageResource(R.drawable.okejka_tak);
+                                    przycisk1.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(0);
+                                    przycisk=R.id.but1;
+                                    przycisk1.setImageResource(R.drawable.poczatkowy);
+                                }
                             }
                         }
                         handler.postDelayed(this,1000);
@@ -168,28 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 final Handler handler = new Handler();
 
 
-                if((lista.get(1)==images[2]&&poprzednio==images[3])||(lista.get(1)==images[3]&&poprzednio==images[2])||
-                        (lista.get(1)==images[6]&&poprzednio==images[5])||(lista.get(1)==images[5]&&poprzednio==images[6])||
-                        (lista.get(1)==images[0]&&poprzednio==images[1])||(lista.get(1)==images[1]&&poprzednio==images[0])||
-                        (lista.get(1)==images[7]&&poprzednio==images[8])||(lista.get(1)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-
-                            //Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                            przycisk2.setImageResource(R.drawable.okejka_tak);
-                            przycisk2.setVisibility(View.INVISIBLE);
-                            ImageButton przycisk2 = (ImageButton)findViewById(przycisk);
-                            przycisk2.setImageResource(R.drawable.okejka_tak);
-                            przycisk2.setVisibility(View.INVISIBLE);
-                            punkty++;
-
-
-                }
-                else{
-                    poprzednio=lista.get(1);
-                    przycisk=R.id.but2;
-                }
 
 
                 handler.post(new Runnable() {
@@ -206,7 +191,42 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds2==2)
                             {
                                 run=false;
-                                przycisk2.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(1)==images[2]&&poprzednio==images[3])||(lista.get(1)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(1)==images[6]&&poprzednio==images[5])||(lista.get(1)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(1)==images[0]&&poprzednio==images[1])||(lista.get(1)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(1)==images[7]&&poprzednio==images[8])||(lista.get(1)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+
+                                    przycisk2.setImageResource(R.drawable.okejka_tak);
+                                    przycisk2.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk2 = (ImageButton)findViewById(przycisk);
+                                    przycisk2.setImageResource(R.drawable.okejka_tak);
+                                    przycisk2.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(1);
+                                    przycisk=R.id.but2;
+                                    przycisk2.setImageResource(R.drawable.poczatkowy);
+                                }
                             }
                         }
                         handler.postDelayed(this,1000);
@@ -228,27 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 final Handler handler = new Handler();
 
 
-                if((lista.get(2)==images[2]&&poprzednio==images[3])||(lista.get(2)==images[3]&&poprzednio==images[2])||
-                        (lista.get(2)==images[6]&&poprzednio==images[5])||(lista.get(2)==images[5]&&poprzednio==images[6])||
-                        (lista.get(2)==images[0]&&poprzednio==images[1])||(lista.get(2)==images[1]&&poprzednio==images[0])||
-                        (lista.get(2)==images[7]&&poprzednio==images[8])||(lista.get(2)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-                           // Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                            przycisk3.setImageResource(R.drawable.okejka_tak);
-                            przycisk3.setVisibility(View.INVISIBLE);
-                            ImageButton przycisk3 = (ImageButton)findViewById(przycisk);
-                            przycisk3.setImageResource(R.drawable.okejka_tak);
-                            przycisk3.setVisibility(View.INVISIBLE);
-                            punkty++;
-
-
-                }
-                else{
-                    poprzednio=lista.get(2);
-                    przycisk=R.id.but3;
-                }
 
 
                 handler.post(new Runnable() {
@@ -265,7 +265,41 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds3==2)
                             {
                                 run=false;
-                                przycisk3.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(2)==images[2]&&poprzednio==images[3])||(lista.get(2)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(2)==images[6]&&poprzednio==images[5])||(lista.get(2)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(2)==images[0]&&poprzednio==images[1])||(lista.get(2)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(2)==images[7]&&poprzednio==images[8])||(lista.get(2)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+                                    przycisk3.setImageResource(R.drawable.okejka_tak);
+                                    przycisk3.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk3 = (ImageButton)findViewById(przycisk);
+                                    przycisk3.setImageResource(R.drawable.okejka_tak);
+                                    przycisk3.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(2);
+                                    przycisk=R.id.but3;
+                                    przycisk3.setImageResource(R.drawable.poczatkowy);
+                                }
 
 
                             }
@@ -290,27 +324,7 @@ public class MainActivity extends AppCompatActivity {
                 final Handler handler = new Handler();
 
 
-                if((lista.get(3)==images[2]&&poprzednio==images[3])||(lista.get(3)==images[3]&&poprzednio==images[2])||
-                        (lista.get(3)==images[6]&&poprzednio==images[5])||(lista.get(3)==images[5]&&poprzednio==images[6])||
-                        (lista.get(3)==images[0]&&poprzednio==images[1])||(lista.get(3)==images[1]&&poprzednio==images[0])||
-                        (lista.get(3)==images[7]&&poprzednio==images[8])||(lista.get(3)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-                          //  Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                            przycisk4.setImageResource(R.drawable.okejka_tak);
-                            przycisk4.setVisibility(View.INVISIBLE);
-                            ImageButton przycisk4 = (ImageButton)findViewById(przycisk);
-                            przycisk4.setImageResource(R.drawable.okejka_tak);
-                            przycisk4.setVisibility(View.INVISIBLE);
-                            punkty++;
-
-
-                }
-                else{
-                    poprzednio=lista.get(3);
-                    przycisk=R.id.but4;
-                }
 
                 handler.post(new Runnable() {
                     boolean  run=true;
@@ -325,7 +339,41 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds4==2)
                             {
                                 run=false;
-                                przycisk4.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(3)==images[2]&&poprzednio==images[3])||(lista.get(3)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(3)==images[6]&&poprzednio==images[5])||(lista.get(3)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(3)==images[0]&&poprzednio==images[1])||(lista.get(3)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(3)==images[7]&&poprzednio==images[8])||(lista.get(3)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+                                    przycisk4.setImageResource(R.drawable.okejka_tak);
+                                    przycisk4.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk4 = (ImageButton)findViewById(przycisk);
+                                    przycisk4.setImageResource(R.drawable.okejka_tak);
+                                    przycisk4.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(3);
+                                    przycisk=R.id.but4;
+                                    przycisk4.setImageResource(R.drawable.poczatkowy);
+                                }
 
 
                             }
@@ -345,32 +393,12 @@ public class MainActivity extends AppCompatActivity {
 
                 lista2.add(lista.get(4));
                 d++;
-                przycisk5.setImageResource(lista.get(4));
+
                 final Handler handler = new Handler();
+                przycisk5.setImageResource(lista.get(4));
 
 
-                if((lista.get(4)==images[2]&&poprzednio==images[3])||(lista.get(4)==images[3]&&poprzednio==images[2])||
-                        (lista.get(4)==images[6]&&poprzednio==images[5])||(lista.get(4)==images[5]&&poprzednio==images[6])||
-                        (lista.get(4)==images[0]&&poprzednio==images[1])||(lista.get(4)==images[1]&&poprzednio==images[0])||
-                        (lista.get(4)==images[7]&&poprzednio==images[8])||(lista.get(4)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-
-                        //    Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                            przycisk5.setImageResource(R.drawable.okejka_tak);
-                            przycisk5.setVisibility(View.INVISIBLE);
-                            ImageButton przycisk5 = (ImageButton)findViewById(przycisk);
-                            przycisk5.setImageResource(R.drawable.okejka_tak);
-                            przycisk5.setVisibility(View.INVISIBLE);
-                            punkty++;
-
-
-                }
-                else{
-                    poprzednio=lista.get(4);
-                    przycisk=R.id.but5;
-                }
 
 
                 handler.post(new Runnable() {
@@ -384,7 +412,43 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds5==2)
                             {
                                 run=false;
-                                przycisk5.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(4)==images[2]&&poprzednio==images[3])||(lista.get(4)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(4)==images[6]&&poprzednio==images[5])||(lista.get(4)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(4)==images[0]&&poprzednio==images[1])||(lista.get(4)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(4)==images[7]&&poprzednio==images[8])||(lista.get(4)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+
+                                    przycisk5.setImageResource(R.drawable.okejka_tak);
+                                    przycisk5.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk5 = (ImageButton)findViewById(przycisk);
+                                    przycisk5.setImageResource(R.drawable.okejka_tak);
+                                    przycisk5.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        mss=0;
+                                        punkty=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(4);
+                                    przycisk=R.id.but5;
+                                    przycisk5.setImageResource(R.drawable.poczatkowy);
+
+                                }
                             }
                         }
                         handler.postDelayed(this,1000);
@@ -404,25 +468,7 @@ public class MainActivity extends AppCompatActivity {
                 final Handler handler = new Handler();
 
 
-                if((lista.get(5)==images[2]&&poprzednio==images[3])||(lista.get(5)==images[3]&&poprzednio==images[2])||
-                        (lista.get(5)==images[6]&&poprzednio==images[5])||(lista.get(5)==images[5]&&poprzednio==images[6])||
-                        (lista.get(5)==images[0]&&poprzednio==images[1])||(lista.get(5)==images[1]&&poprzednio==images[0])||
-                        (lista.get(5)==images[7]&&poprzednio==images[8])||(lista.get(5)==images[8]&&poprzednio==images[7])
-                )
-                {
 
-                //    Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                    przycisk6.setImageResource(R.drawable.okejka_tak);
-                    przycisk6.setVisibility(View.INVISIBLE);
-                    ImageButton przycisk6 = (ImageButton)findViewById(przycisk);
-                    przycisk6.setImageResource(R.drawable.okejka_tak);
-                    przycisk6.setVisibility(View.INVISIBLE);
-                    punkty++;
-                }
-                else{
-                    poprzednio=lista.get(5);
-                    przycisk=R.id.but6;
-                }
 
                 handler.post(new Runnable() {
                     boolean  run=true;
@@ -435,7 +481,39 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds6==2)
                             {
                                 run=false;
-                                przycisk6.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(5)==images[2]&&poprzednio==images[3])||(lista.get(5)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(5)==images[6]&&poprzednio==images[5])||(lista.get(5)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(5)==images[0]&&poprzednio==images[1])||(lista.get(5)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(5)==images[7]&&poprzednio==images[8])||(lista.get(5)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+                                    przycisk6.setImageResource(R.drawable.okejka_tak);
+                                    przycisk6.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk6 = (ImageButton)findViewById(przycisk);
+                                    przycisk6.setImageResource(R.drawable.okejka_tak);
+                                    przycisk6.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+                                }
+                                else{
+                                    poprzednio=lista.get(5);
+                                    przycisk=R.id.but6;
+                                    przycisk6.setImageResource(R.drawable.poczatkowy);
+                                }
                             }
                         }
                         handler.postDelayed(this,1000);
@@ -454,24 +532,7 @@ public class MainActivity extends AppCompatActivity {
                 przycisk7.setImageResource(lista.get(6));
                 final Handler handler = new Handler();
 
-                if((lista.get(6)==images[2]&&poprzednio==images[3])||(lista.get(6)==images[3]&&poprzednio==images[2])||
-                        (lista.get(6)==images[6]&&poprzednio==images[5])||(lista.get(6)==images[5]&&poprzednio==images[6])||
-                        (lista.get(6)==images[0]&&poprzednio==images[1])||(lista.get(6)==images[1]&&poprzednio==images[0])||
-                        (lista.get(6)==images[7]&&poprzednio==images[8])||(lista.get(6)==images[8]&&poprzednio==images[7])
-                )
-                {
-                 //   Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                    przycisk7.setImageResource(R.drawable.okejka_tak);
-                    przycisk7.setVisibility(View.INVISIBLE);
-                    ImageButton przycisk7 = (ImageButton)findViewById(przycisk);
-                    przycisk7.setImageResource(R.drawable.okejka_tak);
-                    przycisk7.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    poprzednio=lista.get(6);
-                    przycisk=R.id.but7;
-                    punkty++;
-                }
+
 
 
 
@@ -488,7 +549,41 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds7==2)
                             {
                                 run=false;
-                                przycisk7.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(6)==images[2]&&poprzednio==images[3])||(lista.get(6)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(6)==images[6]&&poprzednio==images[5])||(lista.get(6)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(6)==images[0]&&poprzednio==images[1])||(lista.get(6)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(6)==images[7]&&poprzednio==images[8])||(lista.get(6)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+                                    przycisk7.setImageResource(R.drawable.okejka_tak);
+                                    przycisk7.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk7 = (ImageButton)findViewById(przycisk);
+                                    przycisk7.setImageResource(R.drawable.okejka_tak);
+                                    przycisk7.setVisibility(View.INVISIBLE);
+                                    punkty++;
+
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+                                }
+                                else{
+                                    poprzednio=lista.get(6);
+                                    przycisk=R.id.but7;
+                                    przycisk7.setImageResource(R.drawable.poczatkowy);
+
+                                }
 
 
                             }
@@ -511,24 +606,7 @@ public class MainActivity extends AppCompatActivity {
                 przycisk8.setImageResource(lista.get(7));
                 final Handler handler = new Handler();
 
-                if((lista.get(7)==images[2]&&poprzednio==images[3])||(lista.get(7)==images[3]&&poprzednio==images[2])||
-                        (lista.get(7)==images[6]&&poprzednio==images[5])||(lista.get(7)==images[5]&&poprzednio==images[6])||
-                        (lista.get(7)==images[0]&&poprzednio==images[1])||(lista.get(7)==images[1]&&poprzednio==images[0])||
-                        (lista.get(7)==images[7]&&poprzednio==images[8])||(lista.get(7)==images[8]&&poprzednio==images[7])
-                )
-                {
-                  //  Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                    przycisk8.setImageResource(R.drawable.okejka_tak);
-                    przycisk8.setVisibility(View.INVISIBLE);
-                    ImageButton przycisk8 = (ImageButton)findViewById(przycisk);
-                    przycisk8.setImageResource(R.drawable.okejka_tak);
-                    przycisk8.setVisibility(View.INVISIBLE);
-                    punkty++;
-                }
-                else{
-                    poprzednio=lista.get(7);
-                    przycisk=R.id.but8;
-                }
+
 
 
 
@@ -545,7 +623,38 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds8==2)
                             {
                                 run=false;
-                                przycisk8.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(7)==images[2]&&poprzednio==images[3])||(lista.get(7)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(7)==images[6]&&poprzednio==images[5])||(lista.get(7)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(7)==images[0]&&poprzednio==images[1])||(lista.get(7)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(7)==images[7]&&poprzednio==images[8])||(lista.get(7)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+                                    przycisk8.setImageResource(R.drawable.okejka_tak);
+                                    przycisk8.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk8 = (ImageButton)findViewById(przycisk);
+                                    przycisk8.setImageResource(R.drawable.okejka_tak);
+                                    przycisk8.setVisibility(View.INVISIBLE);
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+                                }
+                                else{
+                                    poprzednio=lista.get(7);
+                                    przycisk=R.id.but8;
+                                    przycisk8.setImageResource(R.drawable.poczatkowy);
+                                }
 
                             }
                         }
@@ -566,24 +675,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                if((lista.get(8)==images[2]&&poprzednio==images[3])||(lista.get(8)==images[3]&&poprzednio==images[2])||
-                        (lista.get(8)==images[6]&&poprzednio==images[5])||(lista.get(8)==images[5]&&poprzednio==images[6])||
-                        (lista.get(8)==images[0]&&poprzednio==images[1])||(lista.get(8)==images[1]&&poprzednio==images[0])||
-                        (lista.get(8)==images[7]&&poprzednio==images[8])||(lista.get(8)==images[8]&&poprzednio==images[7])
-                )
-                {
-                //    Toast.makeText(getApplicationContext(),"Dostajesz punkt",Toast.LENGTH_LONG).show();
-                    przycisk9.setImageResource(R.drawable.okejka_tak);
-                    przycisk9.setVisibility(View.INVISIBLE);
-                    ImageButton przycisk9 = (ImageButton)findViewById(przycisk);
-                    przycisk9.setImageResource(R.drawable.okejka_tak);
-                    przycisk9.setVisibility(View.INVISIBLE);
-                    punkty++;
-                }
-                else{
-                    poprzednio=lista.get(8);
-                    przycisk=R.id.but9;
-                }
+
 
                 przycisk9.setImageResource(lista.get(8));
                 final Handler handler = new Handler();
@@ -602,7 +694,46 @@ public class MainActivity extends AppCompatActivity {
                             if(mseconds9==2)
                             {
                                 run=false;
-                                przycisk9.setImageResource(R.drawable.poczatkowy);
+
+                                if((lista.get(8)==images[2]&&poprzednio==images[3])||(lista.get(8)==images[3]&&poprzednio==images[2])||
+                                        (lista.get(8)==images[6]&&poprzednio==images[5])||(lista.get(8)==images[5]&&poprzednio==images[6])||
+                                        (lista.get(8)==images[0]&&poprzednio==images[1])||(lista.get(8)==images[1]&&poprzednio==images[0])||
+                                        (lista.get(8)==images[7]&&poprzednio==images[8])||(lista.get(8)==images[8]&&poprzednio==images[7])
+                                )
+                                {
+
+
+
+
+                                    przycisk9.setImageResource(R.drawable.okejka_tak);
+                                    przycisk9.setVisibility(View.INVISIBLE);
+                                    ImageButton przycisk9 = (ImageButton)findViewById(przycisk);
+                                    przycisk9.setImageResource(R.drawable.okejka_tak);
+                                    przycisk9.setVisibility(View.INVISIBLE);
+
+
+
+                                    if(punkty==4)
+                                    {
+                                        gra=false;
+                                        Toast.makeText(getApplicationContext(),"Wygrałeś w: "+Integer.toString(mss)+" sekund",Toast.LENGTH_LONG).show();
+                                        punkty=0;
+                                        mss=0;
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        punkty++;
+                                    }
+
+
+                                }
+                                else{
+                                    poprzednio=lista.get(8);
+                                    przycisk=R.id.but9;
+                                    przycisk9.setImageResource(R.drawable.poczatkowy);
+                                }
 
 
                             }
