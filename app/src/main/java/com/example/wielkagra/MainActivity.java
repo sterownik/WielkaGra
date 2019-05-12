@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.wzor_trzy,
             R.drawable.trygrys_kopia};
     ArrayList<Integer> lista = new ArrayList<Integer>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
                 przycisk2.setImageResource(lista.get(1));
                 final Handler handler = new Handler();
 
@@ -169,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
                     int mseconds2=0;
                     @Override
                     public void run() {
-
 
                         if(run)
                         {
@@ -302,8 +299,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 przycisk4.setImageResource(lista.get(3));
                 final Handler handler = new Handler();
 
@@ -326,8 +321,6 @@ public class MainActivity extends AppCompatActivity {
                                         (lista.get(3)==images[7]&&poprzednio==images[8])||(lista.get(3)==images[8]&&poprzednio==images[7])
                                 )
                                 {
-
-
                                     przycisk4.setImageResource(R.drawable.okejka_tak);
                                     przycisk4.setVisibility(View.INVISIBLE);
                                     ImageButton przycisk4 = (ImageButton)findViewById(przycisk);
@@ -697,10 +690,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
 }
 
