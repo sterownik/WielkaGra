@@ -31,17 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     boolean gra;
     int poprzednio,przycisk;
-    protected void onStart() {
-        super.onStart();
-        punkty=0;
-        mss=0;
-    }
+    
 
-    protected void onStop() {
-        super.onStop();
-        punkty=0;
-        mss=0;
-    }
+
     protected void onDestroy() {
         super.onDestroy();
         punkty=0;
